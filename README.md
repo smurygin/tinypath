@@ -1,6 +1,6 @@
-# tinypath [![CI](https://img.shields.io/github/workflow/status/smurygin/tinypath/CI?style=flat-square)](https://img.shields.io/github/workflow/status/smurygin/tinypath/CI?style=flat-square) [![codecov](https://img.shields.io/codecov/c/github/smurygin/tinypath?style=flat-square)](https://img.shields.io/codecov/c/github/smurygin/tinypath?style=flat-square) 
-
+# tinypath [![CI](https://img.shields.io/github/workflow/status/smurygin/tinypath/CI?style=flat-square)](https://img.shields.io/github/workflow/status/smurygin/tinypath/CI?style=flat-square) [![codecov](https://img.shields.io/codecov/c/github/smurygin/tinypath?style=flat-square)](https://img.shields.io/codecov/c/github/smurygin/tinypath?style=flat-square)
 A tiny utility for generating chains of object property paths.
+<img src="https://github.com/smurygin/tinypath/raw/master/logo.svg" align="right" alt="logo" width="120" height="120">
 
 ## Usage
 
@@ -33,7 +33,22 @@ getPaths({
 ## API: `getPaths(object[, options])`
 
 * `object`: **Object**
+* `options?`: **TinyPathOptions**
+
+### `TinyPathOptions`
+
+`depth?: number`
+
+Default: `0`
+
+`base?: string`
+
+Default: `''`
+
+`separator?: string`
+
+Default: `'.'`
 
 ---
 
-MIT
+![licence](https://img.shields.io/badge/MIT-Dmitry%20Smurygin-inactive?link=https://raw.githubusercontent.com/smurygin/tinypath/master/LICENSE&link=http://smurygin.com)

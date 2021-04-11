@@ -2,29 +2,37 @@ type Primitives = string | number | boolean
 type DeepPartial<T extends {}> = {
     [P in keyof T]?: T[P] extends {} ? DeepPartial<T[P]> : T[P]
 }
-export declare type TinyPaths<T extends {}, TPropsWithOnlySelfProperty extends string = never, TPath extends string = never> = DeepPartial<{
+type TinyPaths<T extends {}, TOutput, TPropsWithOnlySelfProperty extends string = never> = DeepPartial<{
     [P in keyof T]:
     P extends TPropsWithOnlySelfProperty ? P :
         T[P] extends Array<unknown> ? P :
-            T[P] extends Primitives ? P : (TinyPaths<T[P]> & { self: P })
+            T[P] extends Primitives ? TOutput extends true ? string :
+                P : (TinyPaths<T[P], TOutput, TPropsWithOnlySelfProperty> & { self: TOutput extends true ? string : P })
 }>
-export declare type TinyPathGetPaths = <TObject extends {}>(paths: TinyPaths<TObject>) => TinyPaths<TObject>
-const getPaths: TinyPathGetPaths = <TObject extends {}>(obj) => {
+export declare type TinyPathInput<T extends {}, TPropsWithOnlySelfProperty extends string = never> = TinyPaths<T, false, TPropsWithOnlySelfProperty>
+export declare type TinyPathOutput<T extends {}, TPropsWithOnlySelfProperty extends string = never> = TinyPaths<T, true, TPropsWithOnlySelfProperty>
+export declare type TinyPathOptions = {depth: number; base: string; separator: string}
+export declare type TinyPathGetPaths = <TObject extends {}>(paths: TinyPathInput<TObject>, options?: Partial<TinyPathOptions>) => TinyPathOutput<TObject>
+const getPaths: TinyPathGetPaths = <TObject extends {}>(obj, options = {} as TinyPathOptions) => {
+    const {base = '', depth = 0, separator = '.'} = options
     const iterate = (
         obj: TObject,
+        d: number,
         base: string
     ) => Object.keys(obj)
         .reduce((acc, value) => {
-            const path = base ? `${base}.${value}` : value
+            const path = base ? `${base}${separator}${value}` : value
             return typeof obj[value] !== 'object'
                 ? value === 'self'
-                    ? acc as ReturnType<TinyPathGetPaths>
-                    : {...acc as ReturnType<TinyPathGetPaths>, [value]: path}
+                    ? acc as TinyPathOutput<TObject>
+                    : {...acc as TinyPathOutput<TObject>, [value]: path}
                 : {
-                    ...acc as ReturnType<TinyPathGetPaths>,
-                    [value]: {...iterate(obj[value], path), self: path}
+                    ...acc as TinyPathOutput<TObject>,
+                    ...(!depth || d < depth
+                        ? {[value]: {...iterate(obj[value], d+1, path), self: path}}
+                        : {[value]: path})
                 }
-        }, {} as ReturnType<TinyPathGetPaths>)
-    return iterate(obj, '')
+        }, {} as TinyPathOutput<TObject>)
+    return iterate(obj, 1, base)
 }
 export {getPaths}

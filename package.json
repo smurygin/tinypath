@@ -67,7 +67,8 @@
   "yaspeller": {
     "lang": "en",
     "dictionary": [
-      "tinypath"
+      "tinypath",
+      "TinyPathOptions"
     ]
   }
 }
