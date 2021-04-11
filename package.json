@@ -1,0 +1,73 @@
+{
+  "name": "tinypath",
+  "version": "0.0.0",
+  "description": "A tiny utility for generate chains of object property paths",
+  "types": "./dist/index.d.ts",
+  "module": "./dist/index.js",
+  "main": "./dist/index.js",
+  "type": "module",
+  "engines": {
+    "node": ">=8"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "review": "npm run build && npm test && size-limit && yaspeller *.md",
+    "test": "uvu -r ts-node/register __tests__",
+    "test:coverage": "c8 --include=src npm test",
+    "test:report": "c8 report --reporter=text-lcov > coverage.lcov",
+    "build": "rollup -c"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/smurygin/tinypath.git"
+  },
+  "keywords": [
+    "generator",
+    "object",
+    "path",
+    "paths"
+  ],
+  "author": {
+    "name": "Dmitry Smurygin",
+    "email": "d.a.smurygin@gmail.com",
+    "url": "https://smurygin.com"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/smurygin/tinypath/issues"
+  },
+  "size-limit": [
+    {
+      "name": "tinypath",
+      "import": "{ getPaths }",
+      "limit": "710 B"
+    }
+  ],
+  "homepage": "https://github.com/smurygin/tinypath#readme",
+  "devDependencies": {
+    "@commitlint/cli": "^12.1.1",
+    "@commitlint/config-conventional": "^12.1.1",
+    "@rollup/plugin-typescript": "^8.2.1",
+    "@size-limit/preset-small-lib": "^4.10.2",
+    "c8": "^7.7.1",
+    "check-dts": "^0.4.4",
+    "esm": "3.2.25",
+    "husky": "^4.3.8",
+    "rollup": "^2.44.0",
+    "rollup-plugin-terser": "^7.0.2",
+    "size-limit": "^4.10.1",
+    "ts-node": "^9.1.1",
+    "tslib": "^2.2.0",
+    "typescript": "^4.2.4",
+    "uvu": "0.5.1",
+    "yaspeller": "^7.0.0"
+  },
+  "yaspeller": {
+    "lang": "en",
+    "dictionary": [
+      "tinypath"
+    ]
+  }
+}

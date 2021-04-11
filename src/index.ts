@@ -1,0 +1,4 @@
+const getPaths = () => {
+	//
+}
+export {getPaths}

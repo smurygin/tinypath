@@ -1,0 +1,22 @@
+{
+  "ts-node": {
+    "transpileOnly": true,
+    "compilerOptions": {
+      "module": "commonjs"
+    },
+    "include": ["__tests__/**/*"]
+  },
+  "include": [
+    "./src/**/*",
+  ],
+  "exclude": ["dist", "__tests__"],
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "module": "es6",
+    "target": "es5",
+    "moduleResolution": "Node",
+    "declaration": true,
+    "outDir": "dist",
+    "rootDir": "src"
+  }
+}
