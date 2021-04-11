@@ -16,6 +16,7 @@ const setupTestCase = (): [TinyPathInput<ITestCaseObj>, TinyPathOutput<ITestCase
 	{
 		propRoot: 'propRoot',
 		propContainerLevel1: {
+			self: 'propContainerLevel1',
 			propInsideLevel1: 'propInsideLevel1',
 			propContainerLevel2: {
 				propInsideLevel2: 'propInsideLevel2'
