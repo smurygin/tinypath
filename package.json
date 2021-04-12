@@ -1,6 +1,6 @@
 {
   "name": "tinypath",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "A tiny utility for generate chains of object property paths",
   "types": "./dist/index.d.ts",
   "module": "./dist/index.js",
