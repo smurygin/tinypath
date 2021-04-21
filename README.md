@@ -12,7 +12,7 @@ getPaths({
   lvl1: {
     propLvl1: 'propLvl1',
     lvl2: {
-      propLvl2: 'propLvl1'
+      propLvl2: 'propLvl2'
     }
   }
 })
